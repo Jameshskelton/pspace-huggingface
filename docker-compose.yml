@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  serge:
+  hf-app:
     restart: on-failure
     build:
       context: .
