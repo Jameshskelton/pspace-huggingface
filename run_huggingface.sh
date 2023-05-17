@@ -13,6 +13,9 @@ done
 # echo tag for container $tag
 
 git-lfs clone $url
-mv $space_name/* ./
+mkdir app
+mv $space_name/* ./app/
 rm -r -f $space_name
-DOCKER_BUILDKIT=1 docker compose up -d --build
+docker compose build --no-cache
+# pspace init ./ -t Jameshskelton/pspace-huggingface
+

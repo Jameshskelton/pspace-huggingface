@@ -5,6 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: release
     ports:
       - "7860:7860"
