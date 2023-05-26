@@ -1,15 +1,15 @@
 apiVersion: latest
 enabled: true
 name: demo
-image: jameshskelton/bark:v1-0.01
+image: <image-name>
 command:
   - python
   - app.py
   - --server_port
-  - 7860
+  - "7860"
   - --server_name
   - "0.0.0.0"
-port: 7860
+port: "7860"
 healthChecks:
   readiness:
     path: /
