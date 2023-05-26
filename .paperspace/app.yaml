@@ -1,0 +1,36 @@
+apiVersion: latest
+enabled: true
+name: demo
+image: jameshskelton/bark:v1-0.01
+command:
+  - python
+  - app.py
+  - --server_port
+  - 7860
+  - --server_name
+  - "0.0.0.0"
+port: 7860
+healthChecks:
+  readiness:
+    path: /
+resources:
+  replicas: 1
+  instanceType: P6000
+  autoscaling:
+    enabled: true
+    maxReplicas: 2
+    metrics:
+      - metric: requestDuration
+        summary: average
+        value: 0.15
+      - metric: cpu
+        summary: average
+        value: 30
+      - metric: memory
+        summary: average
+        value: 45
+env:
+  - name: GRADIO_SERVER_PORT
+    value: "7860"
+  - name: GRADIO_SERVER_NAME
+    value: 0.0.0.0
