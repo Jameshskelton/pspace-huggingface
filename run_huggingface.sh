@@ -23,27 +23,27 @@ git-lfs clone $url
 
 
 # option one: Local build 
-# export HF_REPO=$url
-# export HF_NAME=$space_name
-# docker compose build --no-cache --build-arg HF_REPO --build-arg HF_NAME 
-# docker tag pspace-huggingface-hf-app $docker_username/$space_name:v-$vers
-# docker push $docker_username/$space_name:v-$vers
-# pspace init ./ -t $template
-# pspace up
+export HF_REPO=$url
+export HF_NAME=$space_name
+docker compose build --no-cache --build-arg HF_REPO --build-arg HF_NAME 
+docker tag pspace-huggingface-hf-app $docker_username/$space_name:v-$vers
+docker push $docker_username/$space_name:v-$vers
+pspace init ./ -t $template
+pspace up
 
 
 # bash run_huggingface.sh -u https://huggingface.co/spaces/suno/bark -s bark -d jameshskelton -t eh 
 # option two: Github actions build
-mkdir app
-mv $space_name/* ./app/
-rm -r -f $space_name
-gh repo create $space_name --source=. --public
+# mkdir app
+# mv $space_name/* ./app/
+# rm -r -f $space_name
+# gh repo create $space_name --source=. --public
 
-git remote add origin github.com:$docker_username/$space_name.git
-git init
-git add .
-git commit -m 'init commit'
-git push --set-upstream origin main
+# git remote add origin github.com:$docker_username/$space_name.git
+# git init
+# git add .
+# git commit -m 'init commit'
+# git push --set-upstream origin main
 sleep 5
 # pspace init . 
 # pspace up
